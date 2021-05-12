@@ -5,6 +5,7 @@ const authUser = require("../../middlewares/authUser");
 
 router.get("/login/url", userControllers.getAuthUrl);
 router.post("/login/token", userControllers.getAccessToken);
+router.get("/login/user-info", authUser, userControllers.getUserInfo);
 
 // router.all("*", authUser);
 // router.get("/:user_id", getUser);

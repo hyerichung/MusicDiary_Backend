@@ -6,14 +6,15 @@ const authUser = (req, res, next) => {
   const authorization = req.get("authorization");
 
   if (authorization?.startsWith("Bearer ")) {
-    try {
-      // verify token
+    const authToken = authorization.split("Bearer ")[1];
+    req.accessToken = authToken;
+    next();
+    // if ( verify token) {
       // "../utils/verifyToken";
-      // find user by user id
-      // send user info to next router
-    } catch (err) {
-      // return 401
-    }
+      // next();
+    // } else {
+    //   // 401 unauthorized
+    // }
   } else {
     return next(createError(401, new Error("Unauthorized token")));
   }
