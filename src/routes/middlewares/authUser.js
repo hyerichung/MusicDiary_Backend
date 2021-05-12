@@ -8,6 +8,7 @@ const authUser = (req, res, next) => {
   if (authorization?.startsWith("Bearer ")) {
     try {
       // verify token
+      // "../utils/verifyToken";
       // find user by user id
       // send user info to next router
     } catch (err) {
