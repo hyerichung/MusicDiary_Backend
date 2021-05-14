@@ -6,8 +6,8 @@ const createError = require("http-errors");
 const cookieParser = require("cookie-parser");
 
 module.exports  = function ({ app, routerLoader }) {
-  app.use(express.json({ limit: "80mb" }));
-  app.use(express.urlencoded({ limit: "80mb", extended: false }));
+  app.use(express.json()); //limit
+  app.use(express.urlencoded({ extended: false })); // limit
 
   app.use(cookieParser());
   app.use(compression());
