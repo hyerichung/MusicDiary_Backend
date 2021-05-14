@@ -9,11 +9,9 @@ const DiarySchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: [true, "Please provide a location"],
-    validate: [true, "Please provide a location"],
   },
   date: {
     type: Date,
-    unique: true,
     default: Date.now(),
   },
   playList: {

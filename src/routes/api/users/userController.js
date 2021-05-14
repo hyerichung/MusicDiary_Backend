@@ -1,6 +1,6 @@
 const SpotifyWebApi = require("spotify-web-api-node");
 
-const { checkUser, createUser } = require("../../../services/userService");
+const { checkUserService, createUserService } = require("../../../services/userService");
 
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
@@ -76,10 +76,10 @@ exports.getUserInfo = async (req, res, next) => {
     }
 
     // transaction
-    const { existedUser, checkUserError } = await checkUser(userInfo.id);
+    const { existedUser, checkUserServiceError } = await checkUserService(userInfo.id);
 
     if (!existedUser) {
-      const { newUser, createUserError } = await createUser(userInfo);
+      const { newUser, createUserServiceError } = await createUserService(userInfo);
       return res.json({
         result: "ok",
         data: {

@@ -9,6 +9,7 @@ module.exports = async function () {
     useFindAndModify: false,
     useCreateIndex: true,
     useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000,
     dbName: "MusicDiary",
   });
 

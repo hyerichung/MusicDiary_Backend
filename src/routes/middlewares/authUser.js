@@ -8,6 +8,11 @@ const authUser = (req, res, next) => {
   if (authorization?.startsWith("Bearer ")) {
     const authToken = authorization.split("Bearer ")[1];
     req.accessToken = authToken;
+
+    if (!authToken) {
+      console.log("no token provided");
+    }
+
     next();
     // if ( verify token) {
       // "../utils/verifyToken";

@@ -12,7 +12,7 @@ module.exports = {
     "plugin:mocha/recommended"
   ],
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 7,
     sourceType: "script",
     ecmaFeatures: {
       "jsx": false,

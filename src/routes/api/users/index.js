@@ -10,6 +10,6 @@ router.get("/login/user-info", authUser, userControllers.getUserInfo);
 
 // router.all("*", authUser);
 // router.get("/:user_id/", getUser);
-router.post("/:user_id/diary/new", authUser, diaryControllers.createDiary);
+router.post("/:user_id/diary/new", authUser, diaryControllers.addNewDiary);
 
 module.exports = router;

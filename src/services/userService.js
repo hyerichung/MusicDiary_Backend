@@ -1,6 +1,6 @@
 const User = require("../models/User");
 
-exports.checkUser = async (id) => {
+exports.checkUserService = async (id) => {
   try {
     const existedUser = await User.findOne({ id });
 
@@ -12,7 +12,7 @@ exports.checkUser = async (id) => {
   }
 };
 
-exports.createUser = async ({ id, userName, email, externalUrl, uri }) => {
+exports.createUserService = async ({ id, userName, email, externalUrl, uri }) => {
   try {
     const newUser = await User.create({
       id,
