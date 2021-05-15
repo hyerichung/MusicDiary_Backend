@@ -75,7 +75,6 @@ exports.getUserInfo = async (req, res, next) => {
       uri: body.uri,
     }
 
-    // transaction
     const { existedUser, checkUserServiceError } = await checkUserService(userInfo.id);
 
     if (!existedUser) {
