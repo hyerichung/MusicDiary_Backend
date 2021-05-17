@@ -1,13 +1,16 @@
 const express = require("express");
 const compression = require("compression");
 const helmet = require("helmet");
+const favicon = require("serve-favicon");
+const path = require("path");
 
 const createError = require("http-errors");
 const cookieParser = require("cookie-parser");
 
 module.exports  = function ({ app, routerLoader }) {
   app.use(express.json()); //limit
-  app.use(express.urlencoded({ extended: false })); // limit
+  app.use(express.urlencoded({ extended: false }));
+  app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
   app.use(cookieParser());
   app.use(compression());

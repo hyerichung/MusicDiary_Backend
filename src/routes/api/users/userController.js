@@ -20,48 +20,45 @@ exports.getAuthUrl = async (req, res, next) => {
     "playlist-modify-public",
     "playlist-modify-private",
     "user-read-recently-played",
-    "user-top-read",
+    "user-top-read"
   ];
 
   const spotifyApi = new SpotifyWebApi({
     redirectUri: redirectUri,
-    clientId: clientId
+    clientId: clientId,
   });
 
   const authorizeURL = await spotifyApi.createAuthorizeURL(scopes);
 
   return res.json({
     result: "ok",
-    data: { authUrl: authorizeURL }
+    data: { authUrl: authorizeURL },
   });
-}
+};
 
 exports.getAccessToken = async (req, res, next) => {
   try {
     const authCode = req.body.authCode;
 
     const spotifyApi = new SpotifyWebApi({ clientId, clientSecret, redirectUri });
-    const { body } = await spotifyApi.authorizationCodeGrant(authCode)
+    const { body } = await spotifyApi.authorizationCodeGrant(authCode);
 
     spotifyApi.setAccessToken(body["access_token"]);
     spotifyApi.setRefreshToken(body["refresh_token"]);
 
     return res.json({
       result: "ok",
-      data: { accessToken: body.access_token }
+      data: { accessToken: body.access_token },
     });
   } catch (err) {
     next(err);
   }
-}
+};
 
 exports.getUserInfo = async (req, res, next) => {
   try {
     const accessToken = req.accessToken;
-
     const spotifyApi = new SpotifyWebApi();
-
-    console.log(accessToken, "!!!!");
 
     spotifyApi.setAccessToken(accessToken);
 
@@ -73,7 +70,7 @@ exports.getUserInfo = async (req, res, next) => {
       email: body.email,
       externalUrl: body.external_urls.spotify,
       uri: body.uri,
-    }
+    };
 
     const { existedUser, checkUserServiceError } = await checkUserService(userInfo.id);
 
@@ -89,26 +86,25 @@ exports.getUserInfo = async (req, res, next) => {
             externalUrl: newUser.externalUrl,
             uri: newUser.uri,
             privateDiaryList: newUser.privateDiaryList,
-          }
-        }
+          },
+        },
       });
     }
 
     return res.json({
       result: "ok",
-        data: {
-          userInfo: {
-            id: existedUser.id,
-            userName: existedUser.userName,
-            email: existedUser.email,
-            externalUrl: existedUser.externalUrl,
-            uri: existedUser.uri,
-            privateDiaryList: existedUser.privateDiaryList, // populated?
-          }
-        }
-    })
+      data: {
+        userInfo: {
+          id: existedUser.id,
+          userName: existedUser.userName,
+          email: existedUser.email,
+          externalUrl: existedUser.externalUrl,
+          uri: existedUser.uri,
+          privateDiaryList: existedUser.privateDiaryList, // diary, playlist populated?
+        },
+      },
+    });
   } catch (err) {
     next(err);
   }
-
 };

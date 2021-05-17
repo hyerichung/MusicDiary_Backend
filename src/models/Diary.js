@@ -19,12 +19,9 @@ const DiarySchema = new mongoose.Schema({
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Track",
-      },
-      { type: mongoose.Schema.Types.ObjectId,
-        ref: "Photo"
       }
     ],
   },
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model("Diary", DiarySchema);

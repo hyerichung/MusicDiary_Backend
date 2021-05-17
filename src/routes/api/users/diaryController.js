@@ -16,26 +16,26 @@ exports.addNewDiary = async (req, res, next) => {
           date: newDiary.date,
           hashTag: newDiary.hashTag,
           location: newDiary.location,
-          playList: newDiary.playList, // populate
+          playList: newDiary.playList,
         },
-      }
-      })
+      },
+    });
   } catch (err) {
     next(err);
   }
-}
+};
 
 exports.getDiaryByDate = async (req, res, next) => {
   try {
-    const userId = req.params.user_id
+    const userId = req.params.user_id;
     const { diaryByDate } = await orderDiaryByDateService(userId);
 
     return res.json({
       result: "ok",
       data: {
-        diaryByDate: diaryByDate.privateDiaryList,
-      }
-    })
+        diaryByDate: diaryByDate.privateDiaryList, // playlist populate
+      },
+    });
   } catch (err) {
     next(err);
   }
