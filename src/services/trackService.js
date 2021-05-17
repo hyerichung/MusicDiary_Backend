@@ -23,7 +23,7 @@ exports.createTrackService = async ({
       preview,
     });
 
-    return { trackId: newTrack._id };
+    return { newTrack };
   } catch (err) {
     return { createTrackServiceError: err };
   }
@@ -31,8 +31,8 @@ exports.createTrackService = async ({
 
 exports.pushTrackToDiaryPlaylistService = async (trackId, diary_id) => {
   try {
-    const newDiaryPlaylist = await Diary.findOneAndUpdate(
-      { _id: diary_id },
+    const newDiaryPlaylist = await Diary.findByIdAndUpdate(
+      diary_id,
       { $push: { playList: trackId } },
       { upsert: true, new: true }
     );
@@ -43,10 +43,10 @@ exports.pushTrackToDiaryPlaylistService = async (trackId, diary_id) => {
   }
 };
 
-exports.getPlayListService = async () => {
-  try {
-    console.log("get all playlist");
-  } catch (err) {
-    return { getPlayListServiceError: err };
-  }
-};
+// exports.getPlayListService = async () => {
+//   try {
+//     console.log("get all playlist");
+//   } catch (err) {
+//     return { getPlayListServiceError: err };
+//   }
+// };

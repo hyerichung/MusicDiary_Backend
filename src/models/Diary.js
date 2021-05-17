@@ -7,7 +7,6 @@ const DiarySchema = new mongoose.Schema({
   },
   location: {
     type: String,
-    unique: true,
     required: [true, "Please provide a location"],
   },
   date: {

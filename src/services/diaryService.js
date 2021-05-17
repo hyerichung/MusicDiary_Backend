@@ -22,9 +22,14 @@ exports.addDiaryService = async (hashTag, location, userId) => {
 
 exports.orderDiaryByDateService = async (userId) => {
   try {
-    const diaryByDate = await User.findOne({ id: userId })
-      .populate({ path: "privateDiaryList", model: "Diary",  options: { sort: { "createdAt": -1 } } })
-      .lean();
+    const diaryByDate = await User.findOne({ id: userId }).populate({
+      path: "privateDiaryList",
+      populate: [{
+        path: "playList",
+        model: "Track",
+        options: { sort: { "createdAt": -1 } },
+      }],
+    });
 
     return { diaryByDate };
   } catch (err) {

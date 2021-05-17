@@ -1,10 +1,9 @@
-const express = require("express");
 const { addDiaryService, orderDiaryByDateService } = require("../../../services/diaryService");
 
 exports.addNewDiary = async (req, res, next) => {
   try {
     const { hashTag, location } = req.body.diaryTitleInfo;
-    const userId = req.params.user_id
+    const userId = req.params.user_id;
 
     const { newDiary } = await addDiaryService(hashTag, location, userId);
 
@@ -33,10 +32,10 @@ exports.getDiaryByDate = async (req, res, next) => {
     return res.json({
       result: "ok",
       data: {
-        diaryByDate: diaryByDate.privateDiaryList, // playlist populate
+        diaryByDate: diaryByDate.privateDiaryList,
       },
     });
   } catch (err) {
     next(err);
   }
-}
+};

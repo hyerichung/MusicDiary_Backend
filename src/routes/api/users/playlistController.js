@@ -1,5 +1,5 @@
 const SpotifyWebApi = require("spotify-web-api-node");
-const { createTrackService, getPlayListService, pushTrackToDiaryPlaylistService } = require("../../../services/trackService");
+const { createTrackService, pushTrackToDiaryPlaylistService } = require("../../../services/trackService");
 
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
@@ -38,17 +38,16 @@ exports.serarchTrack = async (req, res, next) => {
 
 exports.addNewTrackToDiaryPlaylist = async (req, res, next) => {
   try {
-    // create track
     const { trackInfo } = req.body;
     const { user_id, diary_id } = req.params;
 
-    const { trackId } = await createTrackService(trackInfo, user_id, diary_id );
+    const { newTrack } = await createTrackService(trackInfo, user_id, diary_id );
 
-    if (trackId) {
-      const { newDiaryPlaylist } = await pushTrackToDiaryPlaylistService(trackId, user_id, diary_id);
-      return res.json({ result: "ok", data: { newTrackId: trackId } });
+    if (newTrack) {
+      const { newDiaryPlaylist } = await pushTrackToDiaryPlaylistService(newTrack._id, diary_id);
+
+      return res.json({ result: "ok", data: { newTrackInfo: newTrack } });
     }
-
   } catch (err) {
     next(err);
   }
