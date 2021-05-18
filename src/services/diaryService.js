@@ -1,11 +1,12 @@
 const Diary = require("../models/Diary");
 const User = require("../models/User");
 
-exports.addDiaryService = async (hashTag, location, userId) => {
+exports.addDiaryService = async (hashTag, address, geoLocation, userId) => {
   try {
     const newDiary = await Diary.create({
       hashTag,
-      location,
+      address,
+      geoLocation,
     });
 
     const addedUserPrivateDiary = await User.findOneAndUpdate(

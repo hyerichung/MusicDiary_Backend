@@ -5,9 +5,13 @@ const DiarySchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a hashTag"],
   },
-  location: {
+  address: {
     type: String,
     required: [true, "Please provide a location"],
+  },
+  geoLocation: {
+    type: Object,
+    required: [true, "Plese provide a geo location"],
   },
   date: {
     type: Date,
