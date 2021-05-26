@@ -4,8 +4,6 @@ exports.checkUserService = async (id) => {
   try {
     const existedUser = await User.findOne({ id });
 
-    // diary populate
-
     return { existedUser };
   } catch (error) {
     return { checkUserError: error };

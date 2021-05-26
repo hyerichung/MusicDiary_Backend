@@ -1,5 +1,4 @@
 const createError = require("http-errors");
-
 const User = require("../../models/User");
 
 const authUser = (req, res, next) => {
@@ -15,8 +14,8 @@ const authUser = (req, res, next) => {
 
     next();
     // if ( verify token) {
-      // "../utils/verifyToken";
-      // next();
+    // "../utils/verifyToken";
+    // next();
     // } else {
     //   // 401 unauthorized
     // }

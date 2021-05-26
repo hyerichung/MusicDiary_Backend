@@ -8,7 +8,7 @@ const createError = require("http-errors");
 const cookieParser = require("cookie-parser");
 
 module.exports  = function ({ app, routerLoader }) {
-  app.use(express.json()); //limit
+  app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 

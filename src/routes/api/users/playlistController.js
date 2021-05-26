@@ -1,10 +1,6 @@
 const SpotifyWebApi = require("spotify-web-api-node");
 const { createTrackService, pushTrackToDiaryPlaylistService } = require("../../../services/trackService");
 
-const clientId = process.env.CLIENT_ID;
-const clientSecret = process.env.CLIENT_SECRET;
-const redirectUri = process.env.REDIRECT_URI;
-
 exports.serarchTrack = async (req, res, next) => {
   try {
     const accessToken = req.accessToken;
@@ -20,7 +16,7 @@ exports.serarchTrack = async (req, res, next) => {
     const prevTracks = body.tracks.previous;
 
     const resultFormat = body.tracks.items.map(track => ({
-      albumImg: track.album.images[2],
+      albumImg: track.album.images,
       artist: track.artists,
       duration: track.duration_ms,
       id: track.id,
@@ -50,16 +46,5 @@ exports.addNewTrackToDiaryPlaylist = async (req, res, next) => {
     }
   } catch (err) {
     next(err);
-  }
-}
-
-exports.getDiaryPlaylist = async(req, res, next) => {
-  try {
-    // const userId;
-    // const diaryId;
-
-    //  const { playListInfo } = await getPlayListService(userId, diaryId);
-  } catch (err) {
-    // next(err);
   }
 };

@@ -100,7 +100,7 @@ exports.getUserInfo = async (req, res, next) => {
           email: existedUser.email,
           externalUrl: existedUser.externalUrl,
           uri: existedUser.uri,
-          privateDiaryList: existedUser.privateDiaryList, // diary, playlist populated?
+          privateDiaryList: existedUser.privateDiaryList,
         },
       },
     });

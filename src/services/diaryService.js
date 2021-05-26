@@ -28,8 +28,8 @@ exports.orderDiaryByDateService = async (userId) => {
       populate: [{
         path: "playList",
         model: "Track",
-        options: { sort: { "createdAt": -1 } },
       }],
+      options: { sort: { "createdAt": -1 } },
     });
 
     return { diaryByDate };

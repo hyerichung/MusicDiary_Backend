@@ -14,8 +14,6 @@ router.post("/:user_id/diary/new", authUser, diaryControllers.addNewDiary);
 router.get("/:user_id/diary/by-date", authUser, diaryControllers.getDiaryByDate);
 
 router.get("/:user_id/diary/:diary_id/track/search", authUser, playlistController.serarchTrack);
-
 router.post("/:user_id/diary/:diary_id/track/new", authUser, playlistController.addNewTrackToDiaryPlaylist);
-router.get("/:user_id/diary/:diary_id/playlist", authUser, playlistController.getDiaryPlaylist);
 
 module.exports = router;

@@ -6,10 +6,12 @@ exports.createTrackService = async ({
   artist,
   id,
   duration,
+  date,
   genres,
   uri,
   albumImg,
   preview,
+  energy,
 }) => {
   try {
     const newTrack = await Track.create({
@@ -17,10 +19,12 @@ exports.createTrackService = async ({
       artist,
       id,
       duration,
+      date,
       genres,
       uri,
       albumImg,
       preview,
+      energy,
     });
 
     return { newTrack };
@@ -42,11 +46,3 @@ exports.pushTrackToDiaryPlaylistService = async (trackId, diary_id) => {
     return { pushTrackToDiaryPlaylistServiceError: err };
   }
 };
-
-// exports.getPlayListService = async () => {
-//   try {
-//     console.log("get all playlist");
-//   } catch (err) {
-//     return { getPlayListServiceError: err };
-//   }
-// };

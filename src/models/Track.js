@@ -13,6 +13,9 @@ const TrackSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a trackId"],
   },
+  date: {
+    type: Date,
+  },
   duration: {
     type: Number,
     required: [true, "Please provide a duration"],
@@ -21,12 +24,16 @@ const TrackSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
+  energy: {
+    type: Number,
+    default: 0,
+  },
   uri: {
     type: String,
     required: [true, "Please provide a uri"],
   },
   albumImg: {
-    type: Object,
+    type: Array,
     required: [true, "Please provide a albumUrl"],
   },
   preview: {
