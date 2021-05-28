@@ -9,7 +9,6 @@ router.get("/login/url", userControllers.getAuthUrl);
 router.post("/login/token", userControllers.getAccessToken);
 router.get("/login/user-info", authUser, userControllers.getUserInfo);
 
-// router.all("*", authUser);
 router.post("/:user_id/diary/new", authUser, diaryControllers.addNewDiary);
 router.get("/:user_id/diary/by-date", authUser, diaryControllers.getDiaryByDate);
 

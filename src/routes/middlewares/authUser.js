@@ -1,5 +1,4 @@
 const createError = require("http-errors");
-const User = require("../../models/User");
 
 const authUser = (req, res, next) => {
   const authorization = req.get("authorization");
@@ -9,10 +8,11 @@ const authUser = (req, res, next) => {
     req.accessToken = authToken;
 
     if (!authToken) {
-      console.log("no token provided");
+      console.warn("no token provided");
     }
 
     next();
+    // Todo : token 401 handling
     // if ( verify token) {
     // "../utils/verifyToken";
     // next();
