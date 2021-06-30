@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const DiarySchema = new mongoose.Schema({
+  energyScore: {
+    type: Number,
+    default: 0,
+  },
   hashTag: {
     type: String,
     required: [true, "Please provide a hashTag"],

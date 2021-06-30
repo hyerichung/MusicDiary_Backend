@@ -24,7 +24,7 @@ const TrackSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
-  energy: {
+  trackEnergy: {
     type: Number,
     default: 0,
   },

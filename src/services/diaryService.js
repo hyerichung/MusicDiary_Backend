@@ -11,7 +11,7 @@ exports.addDiaryService = async (hashTag, address, geoLocation, userId) => {
 
     const addedUserPrivateDiary = await User.findOneAndUpdate(
       { id: userId },
-      { $push: { privateDiaryList: newDiary._id } },
+      { $push: { diaries: newDiary._id } },
       { upsert: true, new: true }
     );
 
@@ -23,8 +23,8 @@ exports.addDiaryService = async (hashTag, address, geoLocation, userId) => {
 
 exports.orderDiaryByDateService = async (userId) => {
   try {
-    const diaryByDate = await User.findOne({ id: userId }).populate({
-      path: "privateDiaryList",
+    const diariesByDate = await User.findOne({ id: userId }).populate({
+      path: "diaries",
       populate: [{
         path: "playList",
         model: "Track",
@@ -32,7 +32,7 @@ exports.orderDiaryByDateService = async (userId) => {
       options: { sort: { "createdAt": -1 } },
     });
 
-    return { diaryByDate };
+    return { diariesByDate };
   } catch (err) {
     return { orderDiaryByDateServiceError: err };
   }

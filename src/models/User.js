@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     required: [true, "Please provide your spotify uri"],
   },
-  privateDiaryList: {
+  diaries: {
     type: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: "Diary",

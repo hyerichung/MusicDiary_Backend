@@ -8,7 +8,7 @@ const authUser = (req, res, next) => {
     req.accessToken = authToken;
 
     if (!authToken) {
-      console.warn("no token provided");
+      console.log("no token provided");
     }
 
     next();
@@ -17,7 +17,7 @@ const authUser = (req, res, next) => {
     // "../utils/verifyToken";
     // next();
     // } else {
-    //   // 401 unauthorized
+    //   // 401 unauthorize
     // }
   } else {
     return next(createError(401, new Error("Unauthorized token")));

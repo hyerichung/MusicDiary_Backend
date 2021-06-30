@@ -11,7 +11,7 @@ exports.createTrackService = async ({
   uri,
   albumImg,
   preview,
-  energy,
+  trackEnergy,
 }) => {
   try {
     const newTrack = await Track.create({
@@ -24,7 +24,7 @@ exports.createTrackService = async ({
       uri,
       albumImg,
       preview,
-      energy,
+      trackEnergy,
     });
 
     return { newTrack };
@@ -33,11 +33,13 @@ exports.createTrackService = async ({
   }
 };
 
-exports.pushTrackToDiaryPlaylistService = async (trackId, diary_id) => {
+exports.pushTrackToDiaryPlaylistService = async (trackId, diary_id, currentEnergy, trackEnergy) => {
   try {
+    const updatedEnergyScore = Math.floor((((currentEnergy * 0.01) + trackEnergy) / 2) * 100);
+
     const newDiaryPlaylist = await Diary.findByIdAndUpdate(
       diary_id,
-      { $push: { playList: trackId } },
+      { $push: { playList: trackId }, $set: { "energyScore": updatedEnergyScore } },
       { upsert: true, new: true }
     );
 

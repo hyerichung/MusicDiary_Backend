@@ -17,6 +17,7 @@ exports.addNewDiary = async (req, res, next) => {
           address: newDiary.address,
           geoLocation: newDiary.geoLocation,
           playList: newDiary.playList,
+          energyScore: newDiary.energyScore,
         },
       },
     });
@@ -25,15 +26,15 @@ exports.addNewDiary = async (req, res, next) => {
   }
 };
 
-exports.getDiaryByDate = async (req, res, next) => {
+exports.getDiaries = async (req, res, next) => {
   try {
     const userId = req.params.user_id;
-    const { diaryByDate } = await orderDiaryByDateService(userId);
+    const { diariesByDate } = await orderDiaryByDateService(userId);
 
     return res.json({
       result: "ok",
       data: {
-        diaryByDate: diaryByDate.privateDiaryList,
+        diaries: diariesByDate.diaries,
       },
     });
   } catch (err) {
