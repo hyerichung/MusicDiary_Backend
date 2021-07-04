@@ -12,13 +12,15 @@ const authUser = (req, res, next) => {
     }
 
     next();
-    // Todo : token 401 handling
-    // if ( verify token) {
-    // "../utils/verifyToken";
-    // next();
-    // } else {
-    //   // 401 unauthorize
-    // }
+    /*
+      TO-DO: token 401 handling
+      if ( verify token) {
+      "../utils/verifyToken";
+      next();
+      } else {
+        // 401 unauthorize
+      }
+    */
   } else {
     return next(createError(401, new Error("Unauthorized token")));
   }
