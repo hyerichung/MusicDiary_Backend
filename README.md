@@ -90,6 +90,10 @@
   - 스타일링
   - 테스팅 시도
 
+## Navigation
+   <img width="951" alt="Screen Shot 2021-07-27 at 4 36 25 pm" src="https://user-images.githubusercontent.com/64633218/127115315-833d13b0-507b-4207-a6e2-1f76038da693.png">
+
+   
 ## 고난
 ### ✍️ **React native와의 첫 만남**
 
