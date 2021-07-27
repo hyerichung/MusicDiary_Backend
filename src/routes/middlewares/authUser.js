@@ -9,6 +9,7 @@ const authUser = (req, res, next) => {
     if (authToken) {
       req.accessToken = authToken;
       next();
+      return;
     }
 
     /*
