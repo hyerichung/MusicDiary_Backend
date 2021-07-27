@@ -24,8 +24,8 @@ exports.getAuthUrl = async (req, res, next) => {
   ];
 
   const spotifyApi = new SpotifyWebApi({
-    redirectUri: redirectUri,
-    clientId: clientId,
+    clientId,
+    redirectUri,
   });
 
   const authorizeURL = await spotifyApi.createAuthorizeURL(scopes);
@@ -36,19 +36,18 @@ exports.getAuthUrl = async (req, res, next) => {
   });
 };
 
-exports.getAccessToken = async (req, res, next) => {
+exports.getToken = async (req, res, next) => {
   try {
     const authCode = req.body.authCode;
 
     const spotifyApi = new SpotifyWebApi({ clientId, clientSecret, redirectUri });
     const { body } = await spotifyApi.authorizationCodeGrant(authCode);
 
-    spotifyApi.setAccessToken(body["access_token"]);
-    spotifyApi.setRefreshToken(body["refresh_token"]);
-
     return res.json({
       result: "ok",
-      data: { accessToken: body.access_token },
+      data: {
+        accessToken: body.access_token,
+      },
     });
   } catch (err) {
     next(err);

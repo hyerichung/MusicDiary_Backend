@@ -5,22 +5,22 @@ const authUser = (req, res, next) => {
 
   if (authorization?.startsWith("Bearer ")) {
     const authToken = authorization.split("Bearer ")[1];
-    req.accessToken = authToken;
 
-    if (!authToken) {
-      console.log("no token provided");
+    if (authToken) {
+      req.accessToken = authToken;
+      next();
     }
 
-    next();
     /*
       TO-DO: token 401 handling
-      if ( verify token) {
+      if (verify token) {
       "../utils/verifyToken";
       next();
       } else {
         // 401 unauthorize
       }
     */
+
   } else {
     return next(createError(401, new Error("Unauthorized token")));
   }
